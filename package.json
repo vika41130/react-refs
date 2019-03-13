@@ -1,6 +1,6 @@
 {
   "name": "react-beautiful",
-  "version": "0.1.0",
+  "version": "0.1.0-beta",
   "private": true,
   "dependencies": {
     "react": "^16.8.4",
