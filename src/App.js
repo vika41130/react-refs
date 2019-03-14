@@ -1,35 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Parent from './components/ParentToChild/Parent';
+
 class App extends Component {
 
   state = {
-    name: 'TechSmith'
+    title: 'placeholder title'
   }
 
-  changeName = (newName) => {
+  changeTheWorld = (NewTitle) => {
     this.setState({
-      name: newName
-    });
-  }
-
-  changeNameFromInput = (e) => {
-    this.setState({
-      name: e.target.value
+      title: NewTitle
     });
   }
 
   render() {
     return (
-      <div>
-        <br /> <br />
-        <button onClick={() => this.changeName('Awesome TechSmith')}>Change State Using Anon Funtion</button>
-        <button onClick={this.changeName.bind(this, 'Awesome TechSmith -----')}>Change State Using Anon Funtion</button>
-        <br /> <br />
-        <input type="text" onChange={this.changeNameFromInput} value={this.state.name} />
-        <br /> <br />
-        <div>{this.state.name}</div>
-        
+      <div className="App">
+          <Parent changeTheWorldEvent={ this.changeTheWorld.bind(this, 'new world') } 
+            keepTheWorldSameEvent={ this.changeTheWorld.bind(this, 'same world') }
+            title= { this.state.title }
+          />
       </div>
     );
   }
