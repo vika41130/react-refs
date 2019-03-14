@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-// import UniqueId from 'react-html-id';
+import React, { Component, Fragment } from 'react';
 
 import './App.css';
 
 const Temp = () => {
   return (
-    [
-      <div key="1">Hi</div>,
-      <div key="2">Hello</div>
-    ]
+    <Fragment>
+      <div>Hi</div>
+      <div>Hello</div>
+    </Fragment>
   );
 }
 
