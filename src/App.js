@@ -15,34 +15,44 @@ class App extends PureComponent {
     val: 1
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState(() => {
-        return { val: 2 }
-      });
-    }, 2000);
+  onClick = () => {
+    alert(`yey : ${this.firstName.value} | ${this.lastName.value} submitted !`);
   }
 
-
-  // componentDidMount() {
-  //   setInterval(() => {
-  //     this.setState(() => {
-  //       return { val: Math.random() }
-  //     });
-  //   }, 2000);
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("nextState", nextState);
-  //   console.log("current state", this.state);
-  //   return ( this.state === nextState ? false : true );
-  // }
+  onKeyUp = (target, e) => {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) {
+      switch (target) {
+        case 'firstName': this.lastName.focus(); break;
+        case 'lastName': this.age.focus(); break;
+        case 'age': this.submit.focus(); break;
+        default: this.firstName.focus();
+      }
+    }
+  }
 
   render() {
-    console.log("render App");
     return (
       <div className="App">
-        <Temp test={ this.state.val } />
+        <div>
+          <span>First Name: </span>
+          <input ref={(input) => { this.firstName = input }} type="text"
+            onKeyUp={this.onKeyUp.bind(this, 'firstName')} />
+        </div>
+        <div>
+          <span>Last Name: </span>
+          <input ref={(input) => { this.lastName = input }} type="text"
+            onKeyUp={this.onKeyUp.bind(this, 'lastName')} />
+        </div>
+        <div>
+          <span>Age: </span>
+          <input ref={(input) => { this.age = input }} type="text"
+            onKeyUp={this.onKeyUp.bind(this, 'age')} />
+        </div>
+        <div>
+          <input type="submit" value="Submit" onClick={this.onClick} ref={(input) => { this.submit = input }}
+            onKeyUp={this.onKeyUp.bind(this, 'submit')} />
+        </div>
       </div>
     );
   }
